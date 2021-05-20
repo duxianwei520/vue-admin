@@ -1,7 +1,17 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="vue.js"/>
+    <HelloWorld msg="11111111">
+      <template v-slot:header>
+        <div>这是helloword的头部</div>
+      </template>
+      <template v-slot:main>
+        <div @click="mainClick">随便什么内容</div>
+      </template>
+      <template v-slot:footer>
+        <div>helloword的底部</div>
+      </template>
+    </HelloWorld>
   </div>
 </template>
 
@@ -13,6 +23,14 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
+  },
+  methods: {
+    mainClick: function () {
+      console.log(123)
+    }
   }
 }
 </script>
+<style lang="less" scoped>
+
+</style>
