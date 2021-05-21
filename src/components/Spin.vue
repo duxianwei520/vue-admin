@@ -1,5 +1,5 @@
 <template>
-  <div v-if="spinning" class="spin">
+  <div v-if="spinning && loading" class="spin">
     <div class="box">
       <h5>加载中...</h5>
     </div>
@@ -14,11 +14,26 @@ export default {
   },
   data: function () {
     return {
-
+      loading: true
+    }
+  },
+  methods: {
+    init: function () {
+      this.timer = setTimeout(() => {
+        this.loading = false
+      }, 3000)
     }
   },
   mounted: function () {
-    
+    this.$nextTick(() => {
+      const body = document.querySelector('body')
+      body.appendChild(this.$el)
+    })
+  },
+  beforeDestroy: function () {
+    if (this.timer) {
+      clearTimeout(this.timer)
+    }
   }
 }
 </script>
@@ -36,7 +51,7 @@ export default {
     padding: 10px 16px;
     background-color: #fff;
     border-radius: 4px;
-    box-shadow:0px 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow:0px 4px 12px rgba(0, 0, 0, 0.35);
     white-space: nowrap;
   }
 }

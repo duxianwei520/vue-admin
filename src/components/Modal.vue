@@ -55,8 +55,7 @@ export default {
         body.appendChild(this.$el)
       }
     })
-    
-    console.log(this)
+    // console.log(this)
   }
 }
 </script>
