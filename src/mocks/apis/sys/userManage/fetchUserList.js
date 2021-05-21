@@ -14,6 +14,7 @@ module.exports = {
         deptCode: '370200000000',
         phoneNo: '18969784568',
         status: 0,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         roles: [
           {
             id: 10100,
@@ -32,6 +33,7 @@ module.exports = {
         deptCode: '370200000000',
         phoneNo: '15236985623',
         status: 1,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         roles: [
           {
             id: 1,
@@ -51,6 +53,7 @@ module.exports = {
         phoneNo: '15821456854',
         type: 0,
         status: 1,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         roles: [
           {
             id: 1,
@@ -70,6 +73,7 @@ module.exports = {
         phoneNo: '15522223333',
         type: 0,
         status: 0,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         roles: [
           {
             id: 1,
@@ -89,6 +93,7 @@ module.exports = {
         phoneNo: '13200000000',
         type: 0,
         status: 0,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         roles: [
           {
             id: 1,
@@ -108,6 +113,7 @@ module.exports = {
         phoneNo: '15600000000',
         type: 0,
         status: 0,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         roles: [
           {
             id: 1,
@@ -130,6 +136,7 @@ module.exports = {
         phoneNo: '15100000000',
         type: 0,
         status: 0,
+        'duty|1': ['科长', '民警', '队长', '副调研员', '大队长', '副所长'],
         gxdwdm: '370200000000',
       },
     ],

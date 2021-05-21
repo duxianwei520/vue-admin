@@ -8,7 +8,7 @@
           class="department"
           v-for="item in departmentList" 
           :key="item.id"
-          :class="{active: deptCode === item.id}"
+          :class="{active: selectedDeptCode === item.id}"
           @click="onDeptClick(item.id)"
         >
           {{item.deptName}}
@@ -68,8 +68,8 @@
               <td>
                 <span class="operates">
                   <span @click="edit(item)">详情</span>
-                  <span>冻结账户</span>
-                  <span>注销</span>
+                  <!-- <span>冻结账户</span>
+                  <span>注销</span> -->
                 </span>
               </td>
             </tr>
@@ -182,11 +182,13 @@
 // @ is an alias to /src
 import Spin from '@/components/Spin.vue'
 import Modal from '@/components/Modal.vue'
-// import message from '@/components/message/main'
+import message from '@/components/message/main'
 import {
   fetchUserDepttList,
   fetchUserList,
   // fetchUserDetail,
+  fetchUserAdd,
+  fetchUserDetailUpdate,
   // fetchUserDelete,
   fetchRoleList,
   // fetchChangeUserStatus,
@@ -203,7 +205,7 @@ export default {
       isAdd: true, // 是否新增模式
       curItem: {}, // 当前编辑的对象
       keyword: '', // 搜索关键字
-      deptCode: '', // 当前选中的部门id
+      selectedDeptCode: '', // 当前选中的部门id
       departmentList: [], // 部门列表
       spinning: false, // 是否显示loading效果
       // 表单字段 start
@@ -220,7 +222,7 @@ export default {
       title: '新增用户',
       modalVisible: false, // 弹窗的显隐
       // end
-       // 角色列表
+      // 角色列表
       rolesList: [],
       // 表格列表数据
       userListResult: []
@@ -232,7 +234,7 @@ export default {
   methods: {
     // 点击选择部门id
     onDeptClick: function (id) {
-      this.deptCode = id
+      this.selectedDeptCode = id
       this.getUserList()
     },
     // 编辑详情
@@ -267,10 +269,6 @@ export default {
         this.roles = []
       }
     },
-    // 显示弹窗
-    modalShow: function () {
-      this.modalVisible = true
-    },
     // 关闭弹窗
     onCancel: function () {
       this.modalVisible = false
@@ -286,27 +284,20 @@ export default {
         mobile: this.mobile,
         duty: this.duty,
         roles: this.roles,
-        status: 0,
-        deletedLabel: '正常',
       }
-      // console.log(params)
-      const keys = Object.keys(params)
       if (this.isAdd){ // 新增
-        this.userListResult.push(params)
-        params.id = this.userListResult.length + 1
-        keys.map(item => {
-          // console.log(item)
-          if (item === 'roles') {
-            this[item] = []
-          } else {
-            this[item] = ''
-          }
-        })
+        params.id = ''  
+        fetchUserAdd({ ...params })
       } else { // 编辑
+        fetchUserDetailUpdate({ ...params })
         params.id = this.curItem.id
-        const index = this.userListResult.findIndex(item => item.id === this.curItem.id)
-        this.userListResult[index] = params
       }
+      this.getUserList().then(() => {
+        const title = this.isAdd ? '新增用户成功!' : '编辑用户成功!'
+        message({
+          content: title
+        })
+      })
       this.modalVisible = false
     },
     // 初始化
@@ -320,7 +311,7 @@ export default {
       // 获取部门列表
       fetchUserDepttList({}, (res) => {
         this.departmentList = res.data.list[0].children[0].children
-        this.deptCode = this.departmentList[0].id
+        this.selectedDeptCode = this.departmentList[0].id
         this.getUserList()
       })
     },
@@ -330,7 +321,7 @@ export default {
       return new Promise((resolve, reject) => {
         const params = {
           keyword: this.keyword,
-          deptCode: this.deptCode,
+          selectedDeptCode: this.selectedDeptCode,
         }
         fetchUserList({...params}, (res) => {
           this.userListResult = res.data.list
@@ -400,7 +391,7 @@ export default {
 }
 .userManage{
   .flexrow;
-  height: 100%;
+  height: calc(100% - 32px);
   padding: 16px;
   h4{
       height: 34px;
@@ -409,6 +400,7 @@ export default {
       border-bottom: 1px solid #ddd;
       text-align: left;
       font-size: 12px;
+      flex: 0;
     }
   .left{
     flex: 0 0 140px;
@@ -427,12 +419,13 @@ export default {
     }
   }
   .right{
+    .flexcolumn;
     flex: 1;
     border: 1px solid #ddd;
     .top{
       .flexrow;
+      flex: 0;
       padding: 16px;
-      padding-bottom: 0;
       .search-box{
         flex: 1;
         text-align: left;
@@ -450,13 +443,13 @@ export default {
           min-width: 220px;
           padding: 0 8px;
         }
-        // .search{
-          // vertical-align: middle;
-        // }
       }
     }
     .box{
+      .flexcolumn;
+      overflow: auto;
       padding: 16px;
+      padding-top: 0;
       .tbl{
         width: 100%;
         border: 1px solid #ddd;

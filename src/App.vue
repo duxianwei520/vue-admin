@@ -97,6 +97,7 @@ export default {
 
 #main{
   .flexrow;
+  height: 100%;
   #nav{
     .flexcolumn;
     flex: 0 0 170px;
