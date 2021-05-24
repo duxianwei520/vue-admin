@@ -349,7 +349,7 @@ export default {
       this.$store.commit('changeUsername', '张三')
       setTimeout(() => {
         this.$store.dispatch({ type: 'changeUsername', payload: '李四'})
-      }, 1000);
+      }, 1000)
       
     }, 3000)
   }

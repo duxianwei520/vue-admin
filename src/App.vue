@@ -32,6 +32,15 @@
           <li class="linkWrap">
             <router-link to="/moduleManage">模块管理</router-link>
           </li>
+          <li class="linkWrap">
+            <router-link to="/user/foo">用户中心</router-link>
+          </li>
+          <li class="linkWrap">
+            <router-link to="/user/foo/userProfile">用户资料</router-link>
+          </li>
+          <li class="linkWrap">
+            <router-link to="/user/foo/userPosts">岗位</router-link>
+          </li>
         </ul>
       </div>
       <div id="content">
