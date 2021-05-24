@@ -20,6 +20,7 @@ export default {
   methods: {
     init: function () {
       this.timer = setTimeout(() => {
+        console.log(111)
         this.loading = false
       }, 3000)
     }
@@ -34,6 +35,9 @@ export default {
     if (this.timer) {
       clearTimeout(this.timer)
     }
+    this.loading = false // 这行代码已经不起作用了
+    const e = document.querySelector('.spin')
+    e && e.remove()
   }
 }
 </script>

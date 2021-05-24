@@ -343,17 +343,15 @@ export default {
     this.init()
   },
   mounted: function () {
-    
-    // message({
-    //   content: '提示信息',
-    //   duration: 4000,
-    //   // onClose: function (arg) {
-    //   //   console.log(arg)
-    //   // }
-    // })
-    // message({
-    //   content: '这是个警告！'
-    // })
+    // console.log(this.$store.state)
+    setTimeout(() => {
+      this.$store.commit('increment')
+      this.$store.commit('changeUsername', '张三')
+      setTimeout(() => {
+        this.$store.dispatch({ type: 'changeUsername', payload: '李四'})
+      }, 1000);
+      
+    }, 3000)
   }
 }
 </script>

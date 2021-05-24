@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <header id="header">
       <div class="left">
         <span class="logoWrap">
@@ -8,10 +9,11 @@
         <span class="slogan">后台管理系统</span>
       </div>
       <div class="right">
-        <span class="username" title="dupi">dupi</span>
+        <span class="username" title="dupi">{{username}}</span>
         <span class="logout">退出</span>
       </div>
     </header>
+
     <div id="main">
       <div id="nav">
         <ul id="navs">
@@ -36,6 +38,7 @@
         <router-view />
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -43,8 +46,17 @@ export default {
   name: "App",
   data: function () {
     return {
-      isActive: false
+      isActive: false,
+      // username: this.$store.state.username,
     }
+  },
+  computed: {
+    username: function () {
+      return this.$store.state.username
+    }
+  },
+  mounted: function () {
+    
   }
 }
 </script>
