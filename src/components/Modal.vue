@@ -46,7 +46,7 @@ export default {
       this.$emit('onOk')
     },
   },
-  mounted: function () {
+  mounted () {
     this.$nextTick(() => {
       const body = document.querySelector("body")
       if (body.append) {
