@@ -1,11 +1,12 @@
 <template>
   <div class="main">
-    <div>{{mainTitle}}</div>
+    <div>main：{{mainTitle}}</div>
     <div>{{brotherNum}}</div>
+    <a @click="handleClick">点击触发孙子事件</a>
   </div>
 </template>
 <script>
-import Bridge from './bridge'
+import Bus from './bridge'
 export default {
   props: {
     mainTitle: String
@@ -15,18 +16,22 @@ export default {
       brotherNum: ''
     }
   },
+  methods: {
+    handleClick(e) {
+      Bus.$emit('fromGrandfather', 'fromGrandfather', e)
+    }
+  },
   mounted () {
-    Bridge.$on('brother', (a, b) => {
-      console.log(a)
-      console.log(b)
-      this.brotherNum = a
-    })
+    // Bus.$on('brother', (a, b) => {
+    //   console.log(a, b)
+    //   this.brotherNum = a
+    // })
   }
 }
 </script>
 <style lang="less" scoped>
 .main{
-  height: 300px;
+  height: 250px;
   padding: 10px;
   background-color: #f1f1f1;
 }

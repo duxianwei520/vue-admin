@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import Bridge from './bridge'
+import Bus from './bridge'
 export default {
   props: {
     // footerTitle: String
@@ -19,12 +19,25 @@ export default {
   ],
   methods: {
     handle: function () {
-      Bridge.$emit('brother', this.num++, '子组件向兄弟组件传值')
-    }
+      Bus.$emit('brother', this.num++, '中间事物总线通信')
+    },
   },
   created: function () {
-    console.log(this.message)
+    console.log('孙子收到信息message:' + this.message)
     this.handle()
+  },
+  mounted() {
+    Bus.$on('fromGrandfather', (a, b) => {
+      console.log(a)
+      console.log(b)
+    })
   }
 }
 </script>
+<style lang="less" scoped>
+.footerChild{
+  // height: 80px;
+  padding: 10px;
+  background-color: #aaa;
+}
+</style>

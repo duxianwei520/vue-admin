@@ -20,7 +20,7 @@
       <h4>杭州市公安局<span class="red">1355</span>人</h4>
       <div class="top">
         <div class="search-box">
-          <form action="">
+          <form>
             <label for="keyword">
               <input 
                 id="keyword" 
@@ -29,7 +29,7 @@
                 v-model="keyword"
               />
             </label>
-            <button class="btn primary search" @click="onSearch">搜索</button>
+            <button class="btn primary search" @click.prevent="onSearch">搜索</button>
           </form>
         </div>
         <div class="btns">
