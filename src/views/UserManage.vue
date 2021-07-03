@@ -1,17 +1,16 @@
 <template>
   <div class="userManage">
-
     <div class="left">
       <h4>杭州市公安局</h4>
       <ul class="departments">
-        <li 
+        <li
           class="department"
-          v-for="item in departmentList" 
+          v-for="item in departmentList"
           :key="item.id"
-          :class="{active: selectedDeptCode === item.id}"
+          :class="{ active: selectedDeptCode === item.id }"
           @click="onDeptClick(item.id)"
         >
-          {{item.deptName}}
+          {{ item.deptName }}
         </li>
       </ul>
     </div>
@@ -22,18 +21,20 @@
         <div class="search-box">
           <form>
             <label for="keyword">
-              <input 
-                id="keyword" 
-                type="text" 
+              <input
+                id="keyword"
+                type="text"
                 placeholder="请输入姓名或账号进行搜索"
                 v-model="keyword"
               />
             </label>
-            <button class="btn primary search" @click.prevent="onSearch">搜索</button>
+            <button class="btn primary search" @click.prevent="onSearch">
+              搜索
+            </button>
           </form>
         </div>
         <div class="btns">
-          <a class="btn primary" @click="edit({id: 0})">新增人员</a>
+          <a class="btn primary" @click="edit({ id: 0 })">新增人员</a>
         </div>
       </div>
 
@@ -53,16 +54,16 @@
           </thead>
           <tbody>
             <tr v-for="item in userListResult" v-bind:key="item.id">
-              <td>{{item.chineseName}}</td>
-              <td>{{item.duty}}</td>
-              <td>{{item.username}}</td>
-              <td>{{item.deptName}}</td>
+              <td>{{ item.chineseName }}</td>
+              <td>{{ item.duty }}</td>
+              <td>{{ item.username }}</td>
+              <td>{{ item.deptName }}</td>
               <td v-if="item.status === 0">正常</td>
               <td v-else>已冻结</td>
-              <td>{{item.deptExpend}}</td>
+              <td>{{ item.deptExpend }}</td>
               <td>
                 <span v-for="role in item.roles" v-bind:key="role.id">
-                  {{role.roleName}}
+                  {{ role.roleName }}
                 </span>
               </td>
               <td>
@@ -76,7 +77,6 @@
           </tbody>
         </table>
       </div>
-      
     </div>
 
     <Modal
@@ -87,14 +87,18 @@
     >
       <template v-slot:main>
         <form @:submit.prevent="onOk">
-
           <div class="form-item">
             <label class="label" for="chineseName">
               <span class="required">*</span>
               <span class="label-name">警员名称:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.trim="chineseName" id="chineseName" type="text" placeholder="请输入警员名称" />
+              <input
+                v-model.trim="chineseName"
+                id="chineseName"
+                type="text"
+                placeholder="请输入警员名称"
+              />
             </div>
           </div>
 
@@ -104,7 +108,12 @@
               <span class="label-name">警员身份证:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.number.trim="idcardNo" id="idcardNo" type="number" placeholder="请输入警员身份证" />
+              <input
+                v-model.number.trim="idcardNo"
+                id="idcardNo"
+                type="number"
+                placeholder="请输入警员身份证"
+              />
             </div>
           </div>
 
@@ -114,7 +123,12 @@
               <span class="label-name">登录用户名:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.trim="username" id="username" type="text" placeholder="请输入登录用户名" />
+              <input
+                v-model.trim="username"
+                id="username"
+                type="text"
+                placeholder="请输入登录用户名"
+              />
             </div>
           </div>
 
@@ -124,7 +138,12 @@
               <span class="label-name">登录密码:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.trim="password" id="password" type="password" placeholder="请输入登录密码" />
+              <input
+                v-model.trim="password"
+                id="password"
+                type="password"
+                placeholder="请输入登录密码"
+              />
             </div>
           </div>
 
@@ -133,7 +152,12 @@
               <span class="label-name">管辖单位名称:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.trim="deptName" id="deptName" type="text" placeholder="请输入管辖单位名称" />
+              <input
+                v-model.trim="deptName"
+                id="deptName"
+                type="text"
+                placeholder="请输入管辖单位名称"
+              />
             </div>
           </div>
 
@@ -143,7 +167,12 @@
               <span class="label-name">手机号码:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.trim="mobile" id="mobile" type="text" placeholder="请输入手机号码" />
+              <input
+                v-model.trim="mobile"
+                id="mobile"
+                type="text"
+                placeholder="请输入手机号码"
+              />
             </div>
           </div>
 
@@ -152,7 +181,12 @@
               <span class="label-name">警员职务:</span>
             </label>
             <div class="form-item-children">
-              <input v-model.trim="duty" id="duty" type="text" placeholder="请输入警员职务" />
+              <input
+                v-model.trim="duty"
+                id="duty"
+                type="text"
+                placeholder="请输入警员职务"
+              />
             </div>
           </div>
 
@@ -164,13 +198,16 @@
             <div class="form-item-children">
               <select v-model="roles" aria-placeholder="请选择角色" multiple>
                 <option value="" disabled>请选择角色</option>
-                <option v-for="role in rolesList" :value="role.id" :key="role.id">
-                  {{role.roleName}}
+                <option
+                  v-for="role in rolesList"
+                  :value="role.id"
+                  :key="role.id"
+                >
+                  {{ role.roleName }}
                 </option>
               </select>
             </div>
           </div>
-
         </form>
       </template>
     </Modal>
@@ -225,12 +262,10 @@ export default {
       // 角色列表
       rolesList: [],
       // 表格列表数据
-      userListResult: []
+      userListResult: [],
     }
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     // 点击选择部门id
     onDeptClick: function (id) {
@@ -245,10 +280,10 @@ export default {
         this.isAdd = false
         this.curItem = item
         const keys = Object.keys(item)
-        keys.map(key => {
+        keys.map((key) => {
           if (key === 'roles') {
             const arr = []
-            item.roles.map(record => {
+            item.roles.map((record) => {
               arr.push(record.id)
             })
             this.roles = arr
@@ -260,7 +295,7 @@ export default {
       } else {
         this.isAdd = true
         this.chineseName = ''
-        this.idcardNo =''
+        this.idcardNo = ''
         this.username = ''
         this.password = ''
         this.deptName = ''
@@ -285,17 +320,19 @@ export default {
         duty: this.duty,
         roles: this.roles,
       }
-      if (this.isAdd){ // 新增
-        params.id = ''  
+      if (this.isAdd) {
+        // 新增
+        params.id = ''
         fetchUserAdd({ ...params })
-      } else { // 编辑
+      } else {
+        // 编辑
         fetchUserDetailUpdate({ ...params })
         params.id = this.curItem.id
       }
       this.getUserList().then(() => {
         const title = this.isAdd ? '新增用户成功!' : '编辑用户成功!'
         message({
-          content: title
+          content: title,
         })
       })
       this.modalVisible = false
@@ -323,20 +360,24 @@ export default {
           keyword: this.keyword,
           selectedDeptCode: this.selectedDeptCode,
         }
-        fetchUserList({...params}, (res) => {
-          this.userListResult = res.data.list
-          resolve(res)
-          this.spinning = false
-        }, (error) => {
-          reject(error)
-          this.spinning = false
-        })
+        fetchUserList(
+          { ...params },
+          (res) => {
+            this.userListResult = res.data.list
+            resolve(res)
+            this.spinning = false
+          },
+          (error) => {
+            reject(error)
+            this.spinning = false
+          }
+        )
       })
     },
     // 点击搜索
     onSearch: function () {
       this.getUserList()
-    }
+    },
   },
   created: function () {
     // console.log('created')
@@ -348,11 +389,10 @@ export default {
       this.$store.commit('increment')
       this.$store.commit('changeUsername', '张三')
       setTimeout(() => {
-        this.$store.dispatch({ type: 'changeUsername', payload: '李四'})
+        this.$store.dispatch({ type: 'changeUsername', payload: '李四' })
       }, 1000)
-      
     }, 3000)
-  }
+  },
 }
 </script>
 <style lang="less" scoped>
@@ -360,78 +400,78 @@ export default {
 .form-item {
   .flexrow;
   margin-bottom: 10px;
-  .label{
+  .label {
     text-align: right;
     flex: 0 0 25%;
     margin-right: 6px;
-    .required{
+    .required {
       .red;
       font-size: 16px;
       margin-right: 3px;
       vertical-align: middle;
     }
-    .label-name{
+    .label-name {
       vertical-align: middle;
     }
   }
-  .form-item-children{
+  .form-item-children {
     flex: 1;
   }
-  input{
+  input {
     border: 1px solid #5f6a7e;
     background-color: #fff;
     width: 100%;
     font-size: 12px;
   }
-  select{
+  select {
     width: 100%;
   }
 }
-.userManage{
+.userManage {
   .flexrow;
   height: calc(100% - 32px);
   padding: 16px;
-  h4{
-      height: 34px;
-      line-height: 34px;
-      padding: 0 16px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-      font-size: 12px;
-      flex: 0;
-    }
-  .left{
+  h4 {
+    height: 34px;
+    line-height: 34px;
+    padding: 0 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-size: 12px;
+    flex: 0;
+  }
+  .left {
     flex: 0 0 140px;
     border: 1px solid #ddd;
     border-right: 0;
-    .department{
+    .department {
       height: 32px;
       line-height: 32px;
       cursor: pointer;
-      &.active{
+      &.active {
         background-color: #ddeffb;
       }
-      &:hover{
+      &:hover {
         background-color: #edf5fa;
       }
     }
   }
-  .right{
+  .right {
     .flexcolumn;
     flex: 1;
     border: 1px solid #ddd;
-    .top{
+    .top {
       .flexrow;
       flex: 0;
       padding: 16px;
-      .search-box{
+      .search-box {
         flex: 1;
         text-align: left;
-        label{
+        label {
           vertical-align: bottom;
         }
-        input{
-          &:focus{
+        input {
+          &:focus {
             border-color: #7db1ff;
           }
           border: 1px solid #ddd;
@@ -443,24 +483,25 @@ export default {
         }
       }
     }
-    .box{
+    .box {
       .flexcolumn;
       overflow: auto;
       padding: 16px;
       padding-top: 0;
-      .tbl{
+      .tbl {
         width: 100%;
         border: 1px solid #ddd;
-        th{
+        th {
           background-color: #f6f8fc;
         }
-        th,td{
+        th,
+        td {
           border: 1px solid #ddd;
           text-align: left;
           padding: 10px 8px;
         }
-        .operates{
-          span{
+        .operates {
+          span {
             color: @blue;
             margin-right: 8px;
             cursor: pointer;

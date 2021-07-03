@@ -2,7 +2,9 @@
   <div class="header">
     header
     <div class="header1" @click="toFather1">点击触发儿子-父亲传参通信1</div>
-    <div class="header2" @click="toFather($event, { type: 'header2' })">点击触发儿子-父亲传参通信2</div>
+    <div class="header2" @click="toFather($event, { type: 'header2' })">
+      点击触发儿子-父亲传参通信2
+    </div>
     <!-- <input v-model="textValue" @change="headerinputchange" /> -->
   </div>
 </template>
@@ -14,11 +16,10 @@ export default {
   },
   model: {
     // event: 'headerinputchange',
-
   },
   data: function () {
     return {
-      textValue: '1'
+      textValue: '1',
     }
   },
   methods: {
@@ -33,7 +34,8 @@ export default {
     // headerinputchange: function (d) {
     //   console.log(d)
     // },
-    monitoring: function () { // 监听事件
+    monitoring: function () {
+      // 监听事件
       this.$on('listenFather', (res) => {
         console.log('listenFather获取到参数：')
         console.log(res)
@@ -42,16 +44,16 @@ export default {
     callMethod: function (d) {
       console.log(`父亲直接调用子组件callMethod方法，传递的参数是：`)
       console.log(d)
-    }
+    },
   },
   mounted: function () {
     // 注册监听事件
     this.monitoring()
-  }
+  },
 }
 </script>
 <style lang="less" scoped>
-.header{
+.header {
   // height: 80px;
   padding: 10px;
   background-color: #ccc;

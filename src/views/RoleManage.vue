@@ -5,8 +5,8 @@
   </div>
 </template>
 <script>
-import G6 from '@antv/g6';
-import insertCss from 'insert-css';
+import G6 from '@antv/g6'
+import insertCss from 'insert-css'
 insertCss(`
   .g6-tooltip {
     border-radius: 6px;
@@ -18,14 +18,12 @@ insertCss(`
     max-width: 300px;
     word-break: break-all;
   }
-`);
+`)
 
 export default {
   name: 'roleManage',
   data: function () {
-    return {
-
-    }
+    return {}
   },
   mounted() {
     const data = {
@@ -37,7 +35,8 @@ export default {
           conf: [
             {
               label: 'con11sf',
-              value: 'pai_graph.confpai_graph.confpai_graph.confpai_graph.confpai_graph.confpai_graph.conf',
+              value:
+                'pai_graph.confpai_graph.confpai_graph.confpai_graph.confpai_graph.confpai_graph.conf',
             },
           ],
         },
@@ -168,7 +167,7 @@ export default {
           target: '6',
         },
       ],
-    };
+    }
 
     G6.registerNode(
       'sql',
@@ -186,7 +185,7 @@ export default {
               lineWidth: 3,
             },
             name: 'rect-shape',
-          });
+          })
           if (cfg.name) {
             group.addShape('text', {
               attrs: {
@@ -200,17 +199,17 @@ export default {
                 fontWeight: 'bold',
               },
               name: 'text-shape',
-            });
+            })
           }
-          return rect;
+          return rect
         },
       },
-      'single-node',
-    );
+      'single-node'
+    )
 
-    const container = document.getElementById('container');
-    const width = container.scrollWidth;
-    const height = container.scrollHeight || 500;
+    const container = document.getElementById('container')
+    const width = container.scrollWidth
+    const height = container.scrollHeight || 500
     const graph = new G6.Graph({
       container: 'container',
       width,
@@ -254,30 +253,30 @@ export default {
           {
             type: 'tooltip',
             formatText(model) {
-              const cfg = model.conf;
-              const text = [];
+              const cfg = model.conf
+              const text = []
               cfg.forEach((row) => {
-                text.push(row.value);
-              });
-              return text.join('\n');
+                text.push(row.value)
+              })
+              return text.join('\n')
             },
             offset: 100,
           },
         ],
       },
       fitView: true,
-    });
-    graph.data(data);
-    graph.render();
+    })
+    graph.data(data)
+    graph.render()
 
-    if (typeof window !== 'undefined'){
+    if (typeof window !== 'undefined') {
       window.onresize = () => {
-        if (!graph || graph.get('destroyed')) return;
-        if (!container || !container.scrollWidth || !container.scrollHeight) return;
-        graph.changeSize(container.scrollWidth, container.scrollHeight);
+        if (!graph || graph.get('destroyed')) return
+        if (!container || !container.scrollWidth || !container.scrollHeight)
+          return
+        graph.changeSize(container.scrollWidth, container.scrollHeight)
       }
     }
-      
-  }
+  },
 }
 </script>

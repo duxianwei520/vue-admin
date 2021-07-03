@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld msg="vue.js"/>
+    <HelloWorld msg="vue.js" />
     <HelloWorld msg="11111111">
       <template v-slot:header>
         <div>这是helloword的头部</div>
@@ -22,15 +22,14 @@ import HelloWorld from '@/components/HelloWorld.vue'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    HelloWorld,
   },
   methods: {
     mainClick: function () {
       console.log(123)
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="less" scoped>
-
 </style>

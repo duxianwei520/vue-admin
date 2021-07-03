@@ -4,8 +4,9 @@
       <div class="modal-mask" @click="onCancel"></div>
 
       <div class="modal">
-
-        <div class="modal-title">{{title}}<span class="close" @click="onCancel">X</span></div>
+        <div class="modal-title">
+          {{ title }}<span class="close" @click="onCancel">X</span>
+        </div>
 
         <div class="modal-body">
           <slot name="main"></slot>
@@ -17,7 +18,6 @@
             <a class="btn close" @click="onCancel">取消</a>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -30,13 +30,11 @@ export default {
     modalVisible: Boolean,
     title: {
       type: String,
-      default: '弹窗'
+      default: '弹窗',
     },
   },
   data: function () {
-    return {
-
-    }
+    return {}
   },
   methods: {
     onCancel: function () {
@@ -46,9 +44,9 @@ export default {
       this.$emit('onOk')
     },
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
-      const body = document.querySelector("body")
+      const body = document.querySelector('body')
       if (body.append) {
         body.append(this.$el)
       } else {
@@ -56,35 +54,35 @@ export default {
       }
     })
     // console.log(this)
-  }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 @import '../style/base.less';
-.modal-mask{
+.modal-mask {
   position: fixed;
   z-index: 1000;
   width: 100%;
   height: 100%;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.45);
 }
-.modal-wrap{
+.modal-wrap {
   position: fixed;
   z-index: 1000;
   width: 100%;
   height: 100%;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 }
-.modal{
+.modal {
   position: absolute;
   z-index: 1010;
   margin: 0 auto;
@@ -93,28 +91,28 @@ export default {
   width: 520px;
   margin-left: -260px;
   background-color: #fff;
-  .modal-title{
+  .modal-title {
     padding: 16px;
     border-bottom: 1px solid #ddd;
     text-align: left;
-    .close{
+    .close {
       float: right;
       right: 16px;
       top: 10px;
       cursor: pointer;
     }
   }
-  .modal-body{
+  .modal-body {
     padding: 16px;
     text-align: left;
     min-height: 200px;
   }
-  .modal-footer{
+  .modal-footer {
     padding: 16px;
     border-top: 1px solid #ddd;
     text-align: right;
-    .btn{
-      &:last-of-type{
+    .btn {
+      &:last-of-type {
         margin-left: 10px;
       }
     }

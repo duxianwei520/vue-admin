@@ -14,7 +14,7 @@ export default {
   },
   data: function () {
     return {
-      loading: true
+      loading: true,
     }
   },
   methods: {
@@ -23,7 +23,7 @@ export default {
         console.log(111)
         this.loading = false
       }, 3000)
-    }
+    },
   },
   mounted: function () {
     this.$nextTick(() => {
@@ -38,26 +38,25 @@ export default {
     this.loading = false // 这行代码已经不起作用了
     const e = document.querySelector('.spin')
     e && e.remove()
-  }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.spin{
+.spin {
   position: fixed;
   top: 45%;
   left: 40%;
   .box {
-    min-width: 100px ;
+    min-width: 100px;
     max-width: 200px;
     display: inline-block;
     padding: 10px 16px;
     background-color: #fff;
     border-radius: 4px;
-    box-shadow:0px 4px 12px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.35);
     white-space: nowrap;
   }
 }
-
 </style>

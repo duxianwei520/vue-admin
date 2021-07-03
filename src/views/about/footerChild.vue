@@ -11,12 +11,10 @@ export default {
   },
   data: function () {
     return {
-      num: 1
+      num: 1,
     }
   },
-  inject: [
-    'message'
-  ],
+  inject: ['message'],
   methods: {
     handle: function () {
       Bus.$emit('brother', this.num++, '中间事物总线通信')
@@ -31,11 +29,11 @@ export default {
       console.log(a)
       console.log(b)
     })
-  }
+  },
 }
 </script>
 <style lang="less" scoped>
-.footerChild{
+.footerChild {
   // height: 80px;
   padding: 10px;
   background-color: #aaa;

@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-
     <header id="header">
       <div class="left">
         <span class="logoWrap">
-          <img alt="Vue logo" class="logo" src="./assets/logo.png">
+          <img alt="Vue logo" class="logo" src="./assets/logo.png" />
         </span>
         <span class="slogan">后台管理系统</span>
       </div>
       <div class="right">
-        <span class="username" title="dupi">{{username}}</span>
+        <span class="username" title="dupi">{{ username }}</span>
         <span class="logout">退出</span>
       </div>
     </header>
@@ -47,12 +46,11 @@
         <router-view />
       </div>
     </div>
-
   </div>
 </template>
 <script>
 export default {
-  name: "App",
+  name: 'App',
   data: function () {
     return {
       isActive: false,
@@ -62,17 +60,14 @@ export default {
   computed: {
     username: function () {
       return this.$store.state.username
-    }
+    },
   },
-  mounted: function () {
-    
-  }
+  mounted: function () {},
 }
 </script>
 
 <style lang="less">
 @import './style/base.less';
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -84,65 +79,69 @@ export default {
   height: 100%;
 }
 
-#header{
+#header {
   flex: 0 0 64px;
   background-color: #1d2349;
   padding: 0 16px;
   height: 64px;
   overflow: hidden;
-  .left{
+  .left {
     float: left;
     line-height: 64px;
-    .logoWrap{
+    .logoWrap {
       display: inline-block;
-      .logo{
+      .logo {
         width: 35px;
         height: auto;
       }
     }
-    .slogan{
+    .slogan {
       font-size: 18px;
       color: #fff;
       vertical-align: middle;
     }
   }
-  .right{
+  .right {
     float: right;
-    color: #fff;;
+    color: #fff;
     line-height: 64px;
-    .username{
+    .username {
       margin-right: 10px;
     }
   }
 }
 
-#main{
+#main {
   .flexrow;
   height: 100%;
-  #nav{
+  #nav {
     .flexcolumn;
     flex: 0 0 170px;
     height: 100%;
-    #navs{
+    #navs {
       .flexcolumn;
       background-color: #1e2347;
-      .linkWrap{
+      .linkWrap {
         height: 40px;
         line-height: 40px;
-        a{
-          &:hover{
+        a {
+          &:hover {
             background: #4c577b;
           }
           display: block;
           color: #fff;
         }
-        .router-link-exact-active{
-          background-image: linear-gradient(270deg, rgba(142, 172, 255, 0) 0%, #2c56a1 100%);
+        .router-link-exact-active {
+          background-image: linear-gradient(
+            270deg,
+            rgba(142, 172, 255, 0) 0%,
+            #2c56a1 100%
+          );
         }
       }
     }
   }
-  #content{
+  #content {
     flex: 1;
     min-height: 0;
   }
