@@ -27,7 +27,7 @@ export default {
   mounted() {
     Bus.$on('fromGrandfather', (a, b) => {
       console.log(a)
-      console.log(b)
+      // console.log(b)
     })
   },
 }
