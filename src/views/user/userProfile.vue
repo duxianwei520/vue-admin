@@ -67,7 +67,7 @@ export default {
       
       //使用 requestAnimationFrame 实现
       const btnClick = () => {
-        var timer = requestAnimationFrame(function fn() {
+        let timer = requestAnimationFrame(function fn() {
           if (parseInt(test.style.width) < 300) {
             test.style.width = parseInt(test.style.width) + 3 + "px";
             progress.innerHTML = parseInt(test.style.width) / 3 + "%";
@@ -80,7 +80,7 @@ export default {
       btn.onclick = btnClick;
       //使用 setTimeout 实现
       const btn1Click = () => {
-        var timer = setTimeout(function fn() {
+        let timer = setTimeout(function fn() {
           if (parseInt(test1.style.width) < 300) {
             test1.style.width = parseInt(test1.style.width) + 3 + 'px';
             progress1.innerHTML = parseInt(test1.style.width) / 3 + '%';
@@ -88,7 +88,7 @@ export default {
           } else {
             clearTimeout(timer);
           }
-        }, 17);
+        }, 14);
       }
       btn1.onclick = btn1Click
 

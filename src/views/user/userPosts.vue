@@ -83,19 +83,19 @@
       // this.initB();
       // this.initC();
       // this.initD();
-      // const inits = [this.initA, this.initB, this.initC, this.initD]
-      // let num = 0
-      // function render() {
-      //   num += 1;
-      //   if (num < inits.length) {
-      //     requestAnimationFrame(() => {
-      //       requestAnimationFrame(() => {
-      //         render(inits[num]())
-      //       })
-      //     })
-      //   }
-      // }
-      // render(inits[0]())
+      const inits = [this.initA, this.initB, this.initC, this.initD]
+      let num = 0
+      function render() {
+        num += 1;
+        if (num < inits.length) {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              render(inits[num]())
+            })
+          })
+        }
+      }
+      render(inits[0]())
       
     }
   }
