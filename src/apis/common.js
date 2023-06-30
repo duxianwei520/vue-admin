@@ -1,6 +1,6 @@
 
-import { createApi } from '@ajax'
-import { mockURL, /* baseURL, */ path } from '@config'
+import { createApi } from '@/configs/ajax'
+import { mockURL, /* baseURL, */ path } from '@/configs/config'
 
 const prefix = 'usercenter'
 const option = { baseURL: mockURL }

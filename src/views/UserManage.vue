@@ -237,7 +237,7 @@ export default {
     Spin,
     Modal,
   },
-  data: function () {
+  data: function() {
     return {
       isAdd: true, // 是否新增模式
       curItem: {}, // 当前编辑的对象
@@ -268,12 +268,12 @@ export default {
   computed: {},
   methods: {
     // 点击选择部门id
-    onDeptClick: function (id) {
+    onDeptClick: function(id) {
       this.selectedDeptCode = id
       this.getUserList()
     },
     // 编辑详情
-    edit: function (item) {
+    edit: function(item) {
       // console.log(item)
       this.modalVisible = true
       if (item && item.id !== 0) {
@@ -305,11 +305,11 @@ export default {
       }
     },
     // 关闭弹窗
-    onCancel: function () {
+    onCancel: function() {
       this.modalVisible = false
     },
     // 提交表单
-    onOk: function () {
+    onOk: function() {
       const params = {
         chineseName: this.chineseName,
         idcardNo: this.idcardNo,
@@ -338,7 +338,7 @@ export default {
       this.modalVisible = false
     },
     // 初始化
-    init: function () {
+    init: function() {
       this.spinning = true
       // 获取角色列表
       fetchRoleList({}, (res) => {
@@ -353,7 +353,7 @@ export default {
       })
     },
     // 获取用户列表
-    getUserList: function () {
+    getUserList: function() {
       this.spinning = true
       return new Promise((resolve, reject) => {
         const params = {
@@ -375,15 +375,15 @@ export default {
       })
     },
     // 点击搜索
-    onSearch: function () {
+    onSearch: function() {
       this.getUserList()
     },
   },
-  created: function () {
+  created: function() {
     // console.log('created')
     this.init()
   },
-  mounted: function () {
+  mounted: function() {
     // console.log(this.$store.state)
     setTimeout(() => {
       this.$store.commit('increment')
